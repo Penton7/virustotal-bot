@@ -1,1 +1,1 @@
-web: python ScanVirus.py
+web: python3 ScanVirus.py
