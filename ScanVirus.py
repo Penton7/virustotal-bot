@@ -22,7 +22,7 @@ def handle_docs_photo(message):
     bot.reply_to(message, "Wait pls...")
 
     #Send file to virustotal
-    headers = {'x-apikey':'958b49fa9966ae15cee97686c744b717f3a8a9a8b9f8d93f20f19a312a07991f'}
+    headers = {src(api)}
     files = {'file': (src)+ message.document.file_name}
     print(files)
     response = requests.post("https://www.virustotal.com/api/v3/files", headers=headers, files=files )
