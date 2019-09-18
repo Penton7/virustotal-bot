@@ -1,5 +1,6 @@
 import requests
 import telebot
+import json
 import time
 
 token = '814437389:AAHtwOCGU3Zp6s0aMna9w0rXszTUMXvfyb0' #Telegram token
@@ -10,7 +11,7 @@ url_info = 'https://www.virustotal.com/api/v3/analyses/' #Url for information fi
 bot = telebot.TeleBot(token)
 
 @bot.message_handler(content_types=['document'])
-def handle_docs_photo(message):
+def handle_scans_files(message):
  try:
     #Telegram download file
     chat_id = message.chat.id
@@ -30,8 +31,9 @@ def handle_docs_photo(message):
     resource = response.json()["data"]["id"]
 
     #Report antivirus   
-    response = requests.get("https://www.virustotal.com/api/v3/analyses/NTZiNDg5OWU4NDQ2MjlkNDJjZmNlN2Y4Nzc4OTM4MmE6MTU2ODAzMDY0OQ==", headers=headers)
+    response = requests.get("https://www.virustotal.com/api/v3/analyses/" + src(resource) , headers=headers)
     time.sleep(30)
+    data = json.loads(response)
     scans = response.json()["data"]["attributes"]["results"]
     #tru = 0
     #for key, det in scans.items():
